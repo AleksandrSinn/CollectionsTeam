@@ -50,6 +50,12 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
+
+    public void deleteArrayList(int index) {
+
+    }
+
+
     @Override
     public int size() {
         return 0;
