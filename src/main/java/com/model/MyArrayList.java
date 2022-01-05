@@ -57,13 +57,13 @@ public class MyArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     @Override
-    public int getIndex(T object) throws RuntimeException {
+    public int getIndex(T object) {
         for (int i = 0; i < objects.length; i++) {
             if(objects[i] == object){
                 return i;
             }
         }
-        throw new RuntimeException("The object has not found");
+        throw new ArrayIndexOutOfBoundsException();
     }
 
     @Override
@@ -84,11 +84,11 @@ public class MyArrayList<T extends Comparable<T>> implements List<T> {
     @Override
     public void sort() {
         T temp = null;
-        for(int i=0; i < size; i++){
-            for(int j=1; j < size-i; j++){
-                if(objects[j-1].compareTo(objects[j]) > 0){
-                    temp = objects[j-1];
-                    objects[j-1] = objects[j];
+        for(int i = 0; i < size; i++){
+            for(int j = 1; j < size - i; j++){
+                if(objects[j - 1].compareTo(objects[j]) > 0){
+                    temp = objects[j - 1];
+                    objects[j - 1] = objects[j];
                     objects[j] = temp;
                 }
             }
