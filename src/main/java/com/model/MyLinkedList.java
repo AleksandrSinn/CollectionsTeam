@@ -59,7 +59,4 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
     public void sort() {
 
     }
-    public void ArrSort(){
-
-    }
 }
