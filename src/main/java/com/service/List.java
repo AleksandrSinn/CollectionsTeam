@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.Comparator;
+
 public interface List<T> {
     void add(T element);
     void add(T element, int index);
@@ -8,5 +10,5 @@ public interface List<T> {
     int getIndex(T object);
     void delete(int index);
     int size();
-    void sort();
+    void sort(Comparator<? super T> comparator);
 }

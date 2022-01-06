@@ -3,8 +3,12 @@ package com;
 import com.model.MyArrayList;
 import com.model.Song;
 import com.service.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -76,18 +80,11 @@ class MyArrayListTest {
 
     @Test
     void sort() {
-        System.out.println("Before sort");
-        for (int i = 0; i < myList.size(); i++) {
-            System.out.println(myList.get(i));
-        }
+        myList.sort(Comparator.comparingInt(Song::getReleaseYear));
 
-        myList.sort();
-
-        System.out.println("After sort");
-        for (int i = 0; i < myList.size(); i++) {
-            System.out.println(myList.get(i));
-        }
-
-        assertEquals(555, myList.get(myList.size()-1).releaseYear);
+        Assertions.assertTrue(myList.get(0).getReleaseYear() < myList.get(1).getReleaseYear());
+        Assertions.assertTrue(myList.get(1).getReleaseYear() < myList.get(2).getReleaseYear());
+        Assertions.assertTrue(myList.get(2).getReleaseYear() < myList.get(3).getReleaseYear());
+        Assertions.assertTrue(myList.get(3).getReleaseYear() < myList.get(4).getReleaseYear());
     }
 }

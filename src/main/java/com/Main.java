@@ -4,6 +4,8 @@ import com.model.MyArrayList;
 import com.model.Song;
 import com.service.List;
 
+import java.util.Comparator;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -14,11 +16,11 @@ public class Main {
         Song song5 = new Song(555, "Satin");
 
         List<Song> myList = new MyArrayList<>();
-        myList.add(song1);
-        myList.add(song2);
-        myList.add(song3);
         myList.add(song4);
-        myList.add(song5, 3);
+        myList.add(song2);
+        myList.add(song5);
+        myList.add(song1);
+        myList.add(song3);
 
         for(int i = 0; i < myList.size(); i++){
             System.out.println(myList.get(i));
@@ -26,17 +28,12 @@ public class Main {
 
         System.out.println("======================");
 
-        myList.delete(3);
 
-        myList.set(song5, 1);
-
-        myList.sort();
+        myList.sort(Comparator.comparingInt(Song::getReleaseYear));
 
         for(int i = 0; i < myList.size(); i++){
             System.out.println(myList.get(i));
         }
-
-
 
     }
 }

@@ -2,6 +2,8 @@ package com.model;
 
 import com.service.List;
 
+import java.util.Comparator;
+
 public class MyLinkedList<T extends Comparable<T>> implements List<T> {
 
     private int size;
@@ -54,13 +56,15 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
                 currentNode = currentNode.next;
             }
             currentNode = new Node<>(element);
+            endNode = currentNode.next;
+            endNode.prev = currentNode;
             size++;
         }
     }
 
     @Override
     public void set(T element, int index) throws IndexOutOfBoundsException {
-        if (!(index >= 0 && index <= size)) throw new IndexOutOfBoundsException(String.valueOf(index));
+        if (index < 0 && index > size) throw new IndexOutOfBoundsException(String.valueOf(index));
         Node<T> nodeByIndex = searchNodeByIndex(index);
         nodeByIndex.item = element;
     }
@@ -90,7 +94,7 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
 
     @Override
     public void delete(int index) throws IndexOutOfBoundsException {
-        if (!(index >= 0 && index <= size)) throw new IndexOutOfBoundsException(String.valueOf(index));
+        if (index < 0 && index > size) throw new IndexOutOfBoundsException(String.valueOf(index));
         Node<T> deletedNode = searchNodeByIndex(index);
         Node<T> prevDeletedNode = deletedNode.prev;
         Node<T> nextDeletedNode = deletedNode.next;
@@ -116,7 +120,7 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator<? super T> comparator) {
 
     }
 
