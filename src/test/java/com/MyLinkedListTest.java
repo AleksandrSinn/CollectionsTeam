@@ -1,6 +1,7 @@
 package com;
 
 import com.model.MyLinkedList;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,11 +23,18 @@ class MyLinkedListTest {
     }
 
     @Test
-    void add() {
+    void addShouldGetLast() {
+        myLinkedList.add(1000);
+        assertEquals(myLinkedList.get(myLinkedList.size() - 1), 1000);
     }
 
     @Test
-    void testAdd() {
+    void addShouldGetToIndex() {
+        myLinkedList.add(1111, 1);
+        for(int i = 0; i < myLinkedList.size(); i++){
+            System.out.println(myLinkedList.get(i));
+        }
+        assertEquals(myLinkedList.get(1), 1111);
     }
 
     @Test
@@ -39,11 +47,9 @@ class MyLinkedListTest {
 
     @Test
     void get() {
+        assertEquals(myLinkedList.get(0), 18);
     }
 
-    @Test
-    void getIndex() {
-    }
 
     @Test
     void delete() {
@@ -55,6 +61,7 @@ class MyLinkedListTest {
 
     @Test
     void size() {
+        assertEquals(myLinkedList.size(), 7);
     }
 
     @Test
@@ -63,9 +70,15 @@ class MyLinkedListTest {
 
     @Test
     void clear() {
+        myLinkedList.clear();
+        assertEquals(myLinkedList.size(), 0);
     }
 
     @Test
     void isEmpty() {
+        Assertions.assertTrue(myLinkedList.size() != 0);
+        myLinkedList.clear();
+        Assertions.assertTrue(myLinkedList.size() == 0);
+
     }
 }

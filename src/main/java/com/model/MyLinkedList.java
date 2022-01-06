@@ -4,7 +4,7 @@ import com.service.List;
 
 import java.util.Comparator;
 
-public class MyLinkedList<T extends Comparable<T>> implements List<T> {
+public class MyLinkedList<T> implements List<T> {
 
     private int size;
 
@@ -43,6 +43,7 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
         size++;
     }
 
+    @Deprecated
     @Override
     public void add(T element, int index) {
         if(index < 0 && index > size){
@@ -51,13 +52,14 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
         if(index == 0){
             add(element);
         }else{
+            Node<T>newNode = new Node<>(element);
             Node<T> currentNode = head;
             for(int i = 0; i < index; i++){
                 currentNode = currentNode.next;
             }
-            currentNode = new Node<>(element);
-            endNode = currentNode.next;
-            endNode.prev = currentNode;
+            currentNode.prev = newNode;
+            newNode.next = currentNode.next;
+
             size++;
         }
     }
@@ -81,6 +83,7 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
         return tmpNode.item;
     }
 
+    @Deprecated
     @Override
     public int getIndex(T object){
         Node<T>tmpNode = head;
@@ -120,7 +123,7 @@ public class MyLinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     @Override
-    public void sort(Comparator<? super T> comparator) {
+    public void sort(Comparator<? super T> c) {
 
     }
 
