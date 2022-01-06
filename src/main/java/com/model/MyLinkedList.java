@@ -43,22 +43,31 @@ public class MyLinkedList<T> implements List<T> {
         size++;
     }
 
-    @Deprecated
     @Override
     public void add(T element, int index) {
         if(index < 0 && index > size){
             throw new ArrayIndexOutOfBoundsException();
         }
+        Node<T>newNode = new Node<>(element);
         if(index == 0){
             add(element);
-        }else{
-            Node<T>newNode = new Node<>(element);
-            Node<T> currentNode = head;
+        }if(index == size){
+            endNode.next = newNode;
+            endNode = newNode;
+        }
+        else{
+            Node<T> oldNode = head;
+
             for(int i = 0; i < index; i++){
-                currentNode = currentNode.next;
+                oldNode = oldNode.next;
             }
-            currentNode.prev = newNode;
-            newNode.next = currentNode.next;
+
+            Node<T> oldPrev = oldNode.prev;
+            oldPrev.next = newNode;
+            oldNode.prev = newNode;
+
+            newNode.prev = oldPrev;
+            newNode.next = oldNode;
 
             size++;
         }
