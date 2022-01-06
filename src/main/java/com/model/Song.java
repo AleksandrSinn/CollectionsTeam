@@ -1,6 +1,6 @@
 package com.model;
 
-public class Song implements Comparable<Song> {
+public class Song {
     public int releaseYear;
     public String name;
 
@@ -9,9 +9,12 @@ public class Song implements Comparable<Song> {
         this.name = name;
     }
 
-    @Override
-    public int compareTo(Song o) {
-        return Integer.compare(this.releaseYear, o.releaseYear);
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
