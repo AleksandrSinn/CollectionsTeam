@@ -133,7 +133,19 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public void sort(Comparator<? super T> c) {
-
+        boolean unsorted = true;
+        T temp;
+        while (unsorted) {
+            unsorted = false;
+            for (Node<T> x = head; x.next != null; x = x.next) {
+                if (c.compare(x.item, x.next.item) > 0) {
+                    temp = x.item;
+                    x.item = x.next.item;
+                    x.next.item = temp;
+                    unsorted = true;
+                }
+            }
+        }
     }
 
     public void clear(){
