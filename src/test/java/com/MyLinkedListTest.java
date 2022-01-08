@@ -1,13 +1,20 @@
 package com;
 
+import com.model.MyArrayList;
 import com.model.MyLinkedList;
+import com.model.Song;
+import com.service.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyLinkedListTest {
+    List<Song> myList;
     public static MyLinkedList<Integer> myLinkedList;
 
     @BeforeEach
@@ -66,6 +73,24 @@ class MyLinkedListTest {
 
     @Test
     void sort() {
+        myList = new MyLinkedList<>();
+        Song song1 = new Song(111, "Smooth Criminal");
+        Song song2 = new Song(222, "In The Air Tonight");
+        Song song3 = new Song(333, "Nights in White Satin");
+        Song song4 = new Song(444, "Nights");
+        Song song5 = new Song(555, "Satin");
+        myList.add(song5);
+        myList.add(song1);
+        myList.add(song2);
+        myList.add(song4);
+        myList.add(song3);
+
+        myList.sort(Comparator.comparingInt(Song::getReleaseYear));
+
+        Assertions.assertTrue(myList.get(0).getReleaseYear() < myList.get(1).getReleaseYear());
+        Assertions.assertTrue(myList.get(1).getReleaseYear() < myList.get(2).getReleaseYear());
+        Assertions.assertTrue(myList.get(2).getReleaseYear() < myList.get(3).getReleaseYear());
+        Assertions.assertTrue(myList.get(3).getReleaseYear() < myList.get(4).getReleaseYear());
     }
 
     @Test
